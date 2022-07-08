@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NeuroCity</title>
+</head>
+<body>
+
+<style>
+    .first-box{
+        width: 200px;
+        height: 200px;
+        border: 5px solid #01b237;
+        margin-bottom: 30px;
+        position: relative;
+    }
+    .second-box{
+        width: 100px;
+        height: 100px;
+        background-color: #de910b;
+    }
+    .first-box.css{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .second-box.css{
+    }
+</style>
+
+<div class="first-box css">
+    <div class="second-box css"></div>
+</div>
+
+<div id="js-first" class="first-box js">
+    <div id="js-second" class="second-box js"></div>
+</div>
+
+<script>
+    let firstEl = document.getElementById('js-first')
+    let secondEl = document.getElementById('js-second')
+
+    let secondElX = (firstEl.offsetWidth / 2 - secondEl.offsetWidth / 2) - firstEl.clientLeft
+    let secondElY = (firstEl.offsetHeight / 2 - secondEl.offsetHeight / 2) - firstEl.clientTop
+
+    console.log('secondElX = ', secondElX, 'secondElY = ', secondElY)
+
+    console.log(secondEl.offsetParent.id)
+
+    secondEl.style.margin = `${secondElX}px 0 0 ${secondElY}px`;
+
+    console.log(secondEl.style.margin)
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<style>
+    *{
+        user-select: none;
+    }
+    .main-box {
+        font-size: 30px;
+        width: 200px;
+        height: 200px;
+        background: coral;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .main-box span{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .box {
+        width: 100px;
+        height: 100px;
+        margin: 10px 10px 0;
+        position: relative;
+        display: inline-block;
+    }
+
+    .box_green {
+        background: darkgreen;
+    }
+
+    .box_blue {
+        background: cornflowerblue;
+    }
+
+    .box_beige {
+        background: beige;
+    }
+
+    .hidden{
+        opacity: 0;
+        visibility: hidden;
+        z-index: -1;
+        display: none;
+    }
+</style>
+
+<div id="showBoxes" class="main-box"><span>Click!</span></div>
+<div class="box box_green hidden"></div>
+<div class="box box_blue hidden"></div>
+<div class="box box_beige hidden"></div>
+
+
+<script>
+    let showBoxes = document.getElementById('showBoxes')
+
+    function clickBox(e){
+        console.log('click')
+        let boxes = document.getElementsByClassName('box')
+
+        console.log(boxes)
+
+        for (let box of boxes) {
+            box.classList.toggle('hidden')
+        }
+
+        /*boxes.forEach((el, index) => {
+            el.classList.toggle('hidden')
+        })*/
+    }
+
+    let pauseClick = debounce(clickBox, 1000)
+
+    showBoxes.addEventListener('click', pauseClick)
+
+    function debounce(fn, ms) {
+        return function (args) {
+            let previousCall = this.lastCall;
+            this.lastCall = Date.now();
+            if (previousCall && ((this.lastCall - previousCall) <= ms)) {
+                clearTimeout(this.lastCallTimer);
+            }
+            this.lastCallTimer = setTimeout(() => fn(args), ms);
+        }
+    }
+
+</script>
+
+</body>
+</html>

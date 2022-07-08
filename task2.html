@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<style>
+
+    #canvasPaint{border: 5px solid blueviolet;}
+
+</style>
+
+<canvas id="canvasPaint" width="800" height="600"></canvas>
+
+<script>
+    let canvas = document.getElementById("canvasPaint")
+    let rectangle = canvas.getContext('2d');
+    let triangle = canvas.getContext('2d');
+    let square = canvas.getContext('2d');
+    let circle = canvas.getContext('2d');
+
+    rectangle.fillStyle = "#f8da30";
+    rectangle.fillRect(0, 0, 300, 200);
+
+    triangle.fillStyle = "#ff7855";
+    triangle.beginPath();
+    triangle.moveTo(800,0);
+    triangle.lineTo(700,200);
+    triangle.lineTo(600,0);
+    triangle.fill();
+
+    square.fillStyle = "#12ff55";
+    square.fillRect(600, 400, 200, 200);
+
+    circle.fillStyle = "#4a65ff";
+    circle.beginPath();
+    circle.arc(100, 500, 100, 0, 2 * Math.PI);
+    circle.fill();
+
+
+</script>
+
+</body>
+</html>

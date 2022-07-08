@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        position: relative;
+        display: inline-block;
+    }
+</style>
+
+<script>
+
+    function randomColor() {
+        return 'rgb(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ')'
+    }
+
+    let body = document.body
+    let html = ``
+
+    let min = 10
+    let max = 100
+    let number = Math.floor(Math.random() * (max - min + 1) + min)
+
+    for (let i = 0; i < number; i++){
+
+        console.log(number)
+
+        html = `<div class="box" style="background-color: ${randomColor()}"></div>`
+        body.innerHTML += html
+    }
+
+</script>
+
+</body>
+</html>
