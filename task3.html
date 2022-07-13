@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<style>
+    body{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .player{
+        width: max-content;
+    }
+    #video{
+        cursor: pointer;
+    }
+    .timer{
+        font-family: sans-serif;
+        font-weight: lighter;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1.5;
+    }
+
+</style>
+
+<div class="player">
+    <video id="video" src="video.webm" width="500" muted preload="auto" ></video>
+    <div class="timer">0:0:0</div>
+</div>
+
+<script>
+    let video = document.getElementById('video');
+    let timer = document.querySelector('.timer')
+    let videoDuration = 0
+    let currentTime = 0
+
+    video.addEventListener("canplay", () => {
+        videoDuration = video.duration
+
+        video.addEventListener('click', () => {
+            if (video.paused){
+                video.play()
+            } else {
+                video.pause()
+            }
+        });
+
+        video.addEventListener("ended", function() {
+            video.pause();
+        })
+
+        video.addEventListener("timeupdate", () => {
+            currentTime = video.currentTime
+
+            let hours = currentTime / 3600 >= 1 ? currentTime / 3600 : 0
+            let minutes = 0
+            let seconds = 0
+            let mSeconds = 0
+            let timeFormat = ``
+
+            if (hours > 0) {
+                currentTime -= hours * 3600
+                hours = Math.floor(hours)
+                minutes = Math.floor(currentTime / 60)
+                seconds = Math.floor(currentTime % 60)
+                timeFormat = `${hours}:${minutes}:${seconds}`
+            } else {
+                minutes = Math.floor(currentTime / 60)
+                seconds = Math.floor(currentTime % 60)
+                mSeconds = (Math.round(currentTime * 100) / 100 + '').split('.')[1]
+                timeFormat = `${minutes}:${seconds}:${mSeconds}`
+            }
+
+            timer.innerHTML = timeFormat
+        });
+    });
+
+
+
+
+
+</script>
+
+</body>
+</html>
